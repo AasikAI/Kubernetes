@@ -1,1 +1,32 @@
-apiVersion: apps
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+  labels:
+    app: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: database
+          image: cazzzzz/mysqlimage:1.0
+          ports:
+            - containerPort: 3306
+
+          # 🔴 MISSING SECTION IN YOUR YAML
+          env:
+            - name: MYSQL_DATABASE
+              value: ecommerce
+            - name: MYSQL_USER
+              value: appuser
+            - name: MYSQL_PASSWORD
+              value: password
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpassword

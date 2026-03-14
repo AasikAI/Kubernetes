@@ -7,10 +7,9 @@ metadata:
 spec:
   type: NodePort
   selector:
-    matchLabels:
       app: backend
   ports:
     - port: 8080
       targetPort: 8080
-        # place cluster ip here: 
+      nodePort: 30006
 
